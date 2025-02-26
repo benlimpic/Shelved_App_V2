@@ -2,8 +2,6 @@ package com.shelved.shelved.users;
 
 import jakarta.persistence.*;
 
-import java.math.BigInteger;
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -31,9 +29,7 @@ public class User {
     this.imageUrl = imageUrl;
   }
 
-  public Integer getId() {
-    return id;
-  }
+  public Integer getId() { return id; }
 
   public void setId(Integer id) {
     this.id = id;

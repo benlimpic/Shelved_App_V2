@@ -1,9 +1,9 @@
-package com.shelved.shelved.users;
+package com.shelved.shelved.collections;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface CollectionRepository extends JpaRepository<Collection, Integer> {
 
 }
