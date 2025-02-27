@@ -1,6 +1,10 @@
 package com.shelved.shelved.users;
 
+import com.shelved.shelved.collections.Collection;
+import com.shelved.shelved.items.Item;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,14 +23,18 @@ public class User {
   @Column(name = "imageUrl")
   private String imageUrl;
 
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private List<Collection> collections;
+
   public User() {
   }
 
-  public User(Integer id, String username, String password, String imageUrl) {
+  public User(Integer id, String username, String password, String imageUrl, List<Collection> collections) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.imageUrl = imageUrl;
+    this.collections = collections;
   }
 
   public Integer getId() { return id; }
@@ -58,5 +66,9 @@ public class User {
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
   }
+
+  public List<Collection> getCollections() { return collections; }
+
+  public void setCollections(List<Collection> collections) { this.collections = collections; }
 
 }

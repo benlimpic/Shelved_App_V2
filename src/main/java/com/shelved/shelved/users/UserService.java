@@ -1,8 +1,13 @@
 package com.shelved.shelved.users;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
 
+import com.shelved.shelved.collections.Collection;
+
+import com.shelved.shelved.collections.CollectionRepository;
+import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +16,13 @@ import org.springframework.stereotype.Component;
 public class UserService {
 
   private final UserRepository userRepository;
+  private final CollectionRepository collectionRepository;
 
   @Autowired
-  public UserService(UserRepository userRepository) {
+  public UserService(UserRepository userRepository, CollectionRepository collectionRepository) {
 
     this.userRepository = userRepository;
+    this.collectionRepository = collectionRepository;
   }
 
   //Get All Users
@@ -34,7 +41,7 @@ public class UserService {
     }
   }
 
-  // Get Users By Usernames
+  // Get User By Username
   public User findByUsername(String username) {
     Optional<User> optionalUser = userRepository.findAll().stream().filter(user -> user.getUsername().equals(username)).findFirst();
     if (optionalUser.isPresent()) {

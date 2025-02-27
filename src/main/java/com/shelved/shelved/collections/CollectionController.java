@@ -1,4 +1,5 @@
 package com.shelved.shelved.collections;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,14 @@ public class CollectionController {
     public Collection getCollectionById(@PathVariable Integer id) {
         if (id != null) {
             return collectionService.getCollectionById(id);
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/by-user/{userId}")
+    public List<Collection> getCollectionsByUser(@PathVariable Integer userId) {
+        if (userId != null) {
+            return collectionService.getCollectionsByUser(userId);
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }

@@ -1,7 +1,9 @@
 package com.shelved.shelved.items;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ItemRepository extends CrudRepository<Item, Integer> {
-    
+@Repository
+public interface ItemRepository extends JpaRepository<Item, Integer> {
+
 }
